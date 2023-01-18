@@ -12,15 +12,18 @@ response = requests.get(BLOG_URL)
 all_posts = response.json()
 
 
+# --------- Home Page
 @app.route('/')
 def home():
     return render_template("index.html", blogs=all_posts)
 
 
+# --------- Blog Post Page
 @app.route('/post/<blog_id>')
 def blog_post(blog_id):
     return render_template("post.html", blog=all_posts[int(blog_id) - 1])
 
 
+# --------- Run Server
 if __name__ == "__main__":
     app.run(debug=True)
